@@ -97,7 +97,7 @@
     },
     "OpnScriptURI": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/dmauser/opnazure/master/scripts/",
+      "defaultValue": "https://raw.githubusercontent.com/AndreySinenok/opnazure/master/scripts/",
       "metadata": {
         "description": "URI for Custom OPN Script and Config"
       }
@@ -1926,7 +1926,7 @@
                   "fileUris": [
                     "[format('{0}{1}', parameters('OPNScriptURI'), parameters('ShellScriptName'))]"
                   ],
-                  "commandToExecute": "[format('sh {0} {1} {2} {3} {4} {5} {6} {7} {8}', parameters('ShellScriptName'), parameters('ShellScriptObj').OpnScriptURI, parameters('ShellScriptObj').OpnVersion, parameters('ShellScriptObj').WALinuxVersion, parameters('ShellScriptObj').OpnType, if(not(empty(parameters('ShellScriptObj').TrustedSubnetName)), reference(resourceId('Microsoft.Network/virtualNetworks/subnets', split(parameters('ShellScriptObj').TrustedSubnetName, '/')[0], split(parameters('ShellScriptObj').TrustedSubnetName, '/')[1]), '2023-05-01').addressPrefix, ''), if(not(empty(parameters('ShellScriptObj').WindowsSubnetName)), reference(resourceId('Microsoft.Network/virtualNetworks/subnets', split(parameters('ShellScriptObj').WindowsSubnetName, '/')[0], split(parameters('ShellScriptObj').WindowsSubnetName, '/')[1]), '2023-05-01').addressPrefix, '1.1.1.1/32'), parameters('ShellScriptObj').publicIPAddress, parameters('ShellScriptObj').opnSenseSecondarytrustedNicIP)]"
+                  "commandToExecute": "[format('sh {0} {1} {2} {3} {4} {5} {6} {7} {8}', parameters('ShellScriptName'), parameters('ShellScriptObj').OpnScriptURI, parameters('ShellScriptObj').OpnVersion, parameters('ShellScriptObj').WALinuxVersion, parameters('ShellScriptObj').OpnType, if(not(empty(parameters('ShellScriptObj').TrustedSubnetName)), reference(resourceId('Microsoft.Network/virtualNetworks/subnets', split(parameters('ShellScriptObj').TrustedSubnetName, '/')[0], split(parameters('ShellScriptObj').TrustedSubnetName, '/')[1]), '2023-05-01').addressPrefixes, ''), if(not(empty(parameters('ShellScriptObj').WindowsSubnetName)), reference(resourceId('Microsoft.Network/virtualNetworks/subnets', split(parameters('ShellScriptObj').WindowsSubnetName, '/')[0], split(parameters('ShellScriptObj').WindowsSubnetName, '/')[1]), '2023-05-01').addressPrefixes, '1.1.1.1/32'), parameters('ShellScriptObj').publicIPAddress, parameters('ShellScriptObj').opnSenseSecondarytrustedNicIP)]"
                 }
               },
               "dependsOn": [
